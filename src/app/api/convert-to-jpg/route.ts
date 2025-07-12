@@ -1,4 +1,5 @@
- 1 import { NextRequest, NextResponse } from 'next/server';
+
+    1 import { NextRequest, NextResponse } from 'next/server';
     2 import sharp from 'sharp';
     3 import path from 'path';
     4 import fs from 'fs/promises';
@@ -18,24 +19,22 @@
    18
    19     const buffer = Buffer.from(await file.arrayBuffer());
    20     const originalFilename = file.name;
-   21     const baseFilename = path.basename(originalFilename, path.extname(originalFilename));
-   22
-   23     // Define the new filename with a .jpg extension
-   24     const newFilename = `${baseFilename}-converted-${Date.now()}.jpg`;
-   25     const outputPath = path.join(uploadsDir, newFilename);
-   26
-   27     // Use sharp to convert the image to JPG
-   28     await sharp(buffer)
-   29       .jpeg({
-   30         quality: 90, // You can adjust the quality
-   31         chromaSubsampling: '4:4:4' // Use high-quality subsampling
-   32       })
-   33       .toFile(outputPath);
+   21     const fileExtension = path.extname(originalFilename);
+   22     const baseFilename = path.basename(originalFilename, fileExtension);
+   23     const newFilename = `${baseFilename}-converted-${Date.now()}.jpg`; // Ensure it's .jpg
+   24     const outputPath = path.join(uploadsDir, newFilename);
+   25
+   26     await sharp(buffer)
+   27       .jpeg({
+   28         quality: 90, // You can adjust the quality
+   29         chromaSubsampling: '4:4:4' // Use high-quality subsampling
+   30       })
+   31       .toFile(outputPath);
+   32
+   33     return NextResponse.json({ success: true, filename: newFilename });
    34
-   35     return NextResponse.json({ success: true, filename: newFilename });
-   36
-   37   } catch (error) {
-   38     console.error(error);
-   39     return NextResponse.json({ error: 'Failed to convert image.' }, { status: 500 });
-   40   }
-   41 }
+   35   } catch (error) {
+   36     console.error(error);
+   37     return NextResponse.json({ error: 'Failed to convert image.' }, { status: 500 });
+   38   }
+   39 }

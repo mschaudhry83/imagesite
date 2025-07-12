@@ -17,7 +17,7 @@
    16     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
    17     await fs.mkdir(uploadsDir, { recursive: true });
    18
-   19     const buffer = Buffer.from(await file.arrayBuffer()); // Corrected: arrayBuffer()
+   19     const buffer = Buffer.from(await file.arrayBuffer());
    20     const originalFilename = file.name;
    21     const fileExtension = path.extname(originalFilename);
    22     const baseFilename = path.basename(originalFilename, fileExtension);

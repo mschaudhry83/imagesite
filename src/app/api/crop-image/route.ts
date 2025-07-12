@@ -1,4 +1,6 @@
-  1 import { NextRequest, NextResponse } from 'next/server';
+
+
+    1 import { NextRequest, NextResponse } from 'next/server';
     2 import sharp from 'sharp';
     3 import path from 'path';
     4 import fs from 'fs/promises';
@@ -29,7 +31,7 @@
    29     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
    30     await fs.mkdir(uploadsDir, { recursive: true });
    31
-   32     const buffer = Buffer.from(await file.arrayArrayBuffer());
+   32     const buffer = Buffer.from(await file.arrayBuffer()); // Corrected: arrayBuffer()
    33     const originalFilename = file.name;
    34     const fileExtension = path.extname(originalFilename);
    35     const baseFilename = path.basename(originalFilename, fileExtension);

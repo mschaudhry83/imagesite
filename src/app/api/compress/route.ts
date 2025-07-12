@@ -1,4 +1,5 @@
-  1 import { NextRequest, NextResponse } from 'next/server';
+
+    1 import { NextRequest, NextResponse } from 'next/server';
     2 import sharp from 'sharp';
     3 import path from 'path';
     4 import fs from 'fs/promises';
@@ -16,7 +17,7 @@
    16     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
    17     await fs.mkdir(uploadsDir, { recursive: true });
    18
-   19     const buffer = Buffer.from(await file.arrayBuffer());
+   19     const buffer = Buffer.from(await file.arrayBuffer()); // Corrected: arrayBuffer()
    20     const originalFilename = file.name;
    21     const fileExtension = path.extname(originalFilename);
    22     const baseFilename = path.basename(originalFilename, fileExtension);
@@ -44,7 +45,7 @@
    44
    45     return NextResponse.json({ success: true, filename: compressedFilename });
    46
-   47   } catch (error) { you have created this file.
+   47   } catch (error) {
    48     console.error(error);
    49     return NextResponse.json({ error: 'Failed to compress image.' }, { status: 500 });
    50   }

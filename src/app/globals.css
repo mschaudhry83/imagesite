@@ -1,0 +1,35 @@
+  1 @tailwind base;
+    2 @tailwind components;
+    3 @tailwind utilities;
+    4
+    5 body {
+    6   background-color: #f9fafb; /* A light gray from the Tailwind palette */
+    7   color: #1f2937; /* A dark gray for text */
+    8 }
+    9
+   10 .container {
+   11   max-width: 1200px;
+   12 }
+   13
+   14 /* Placeholder style for Google Ads */
+   15 .ad-placeholder {
+   16   background-color: #e5e7eb; /* A light gray placeholder color */
+   17   border: 2px dashed #9ca3af; /* A dashed border to indicate it's a placeholder */
+   18   display: flex;
+   19   align-items: center;
+   20   justify-content: center;
+   21   text-align: center;
+   22   color: #4b5563;
+   23   font-size: 1rem;
+   24   min-height: 90px; /* Default height for banner ads */
+   25 }
+   26
+   27 .ad-placeholder-skyscraper {
+   28   min-height: 600px;
+   29   min-width: 160px;
+   30 }
+   31
+   32 .ad-placeholder-rectangle {
+   33   min-height: 250px;
+   34   min-width: 300px;
+   35 }
